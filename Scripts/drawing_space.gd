@@ -18,25 +18,13 @@ func _ready() -> void:
 	lineList[UUID][0].round_precision = 10
 	self.add_child(lineList[UUID][0])
 	
-	#newLine.default_color = Color("black")
-	#newLine.antialiased = true
-	#newLine.begin_cap_mode = 2
-	#newLine.joint_mode = 2
-	#newLine.width = 10
-	#newLine.end_cap_mode = 2
-	#newLine.round_precision = 10
-	#self.add_child(newLine)
-	#line = newLine
-	
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("click"):
 		addingNewLine()
 
-
 func _input(event: InputEvent) -> void:
 	if not Input.is_action_pressed("click"):
 		return
-	
 	event_pos = event.position
 	queue_redraw()
 
