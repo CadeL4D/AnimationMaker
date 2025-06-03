@@ -12,9 +12,13 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("click"):
+		#lineList[UUID].append(lineList[lineList.keys()[-1]][0].get_points())
+		print(lineList)
 		addingNewLine(1)
 
 func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("undo"):
+		undo()
 	if not Input.is_action_pressed("click"):
 		return
 	event_pos = event.position
@@ -36,6 +40,10 @@ func addingNewLine(flip = 0):
 		lineList[UUID][0].end_cap_mode = 2
 		lineList[UUID][0].round_precision = 10
 		self.add_child(lineList[UUID][0])
+		
+func undo():
+	lineList[lineList.keys()[-2]][0].clear_points()
+	lineList.erase(lineList.keys()[-2])
 
 	
 
