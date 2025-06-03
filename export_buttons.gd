@@ -10,28 +10,51 @@ func _ready() -> void:
 	SaveButton.pressed.connect(save_button_clicked)
 
 func add_button_clicked():
-	var count = list_files_in_directory("user://frames")
+	var count = num_files_in("user://")
 	print(count)
-	get_viewport().get_texture().get_image().save_png("user://frames/image"+str(count)+".png")
+	get_viewport().get_texture().get_image().save_png("user://image"+str(count)+".png")
 	
 func play_button_clicked():
-	print("playing")
-	
+	get_images("user://")
+			
 func save_button_clicked():
-	print("saved")
+	const GIFExporter = preload("res://gdgifexporter/exporter.gd")
+	# load quantization module that you want to use
+	const MedianCutQuantization = preload("res://gdgifexporter/quantization/median_cut.gd")
+	# load your image from png file
+	
+	# remember to use this image format when exporting
+	
+	var png_images = get_images("user://")
+	# initialize exporter object with width and height of gif canvas
+	var exporter = GIFExporter.new(png_images[0].get_width(), png_images[0].get_height())
+	
+	# write image using median cut quantization method and with one second animation delay
+	for img in png_images:
+		img.convert(Image.FORMAT_RGBA8)
+		exporter.add_frame(img, 1, MedianCutQuantization)
 
-func list_files_in_directory(path):
+	# when you have exported all frames of animation you, then you can save data into file
+	# open new file with write privlige
+	var file: FileAccess = FileAccess.open('user://result.gif', FileAccess.WRITE)
+	# save data stream into file
+	file.store_buffer(exporter.export_file_data())
+	# close the file
+	file.close()
+
+func num_files_in(path):
 	var files = []
 	var dir = DirAccess.open(path)
-	print(dir)
 	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while true:
-			if dir.current_is_dir():
-				print("Found directory: " + file_name)
-			else:
-				print("Found file: " + file_name)
-				files.append(file_name)
-			file_name = dir.get_next()
-	return len(files)
+		return len((dir.get_files()))
+
+func get_images(path):
+	var images = []
+	var dir = DirAccess.open(path)
+	if dir:
+		for i in dir.get_files():
+			var image = Image.load_from_file(path+str(i))
+			images.append(image)
+	return images
+			
+			
