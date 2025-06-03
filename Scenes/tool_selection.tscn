@@ -1,31 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://c04m85uipksw7"]
+[gd_scene load_steps=11 format=3 uid="uid://c04m85uipksw7"]
 
 [ext_resource type="Script" uid="uid://c1fh0mgefjk1t" path="res://Scripts/tool_selection.gd" id="1_p2p86"]
+[ext_resource type="ButtonGroup" uid="uid://dyaxp2gdqk62i" path="res://Assets/tools_buttonbar.tres" id="2_jons3"]
+[ext_resource type="Texture2D" uid="uid://doco2y2ygr07w" path="res://Assets/BrushChecked.png" id="2_mpq5w"]
+[ext_resource type="Texture2D" uid="uid://cymh052crlit3" path="res://Assets/BrushUnchecked.png" id="3_ygjbv"]
+[ext_resource type="Texture2D" uid="uid://ccsxyjr4sms3v" path="res://Assets/EraserChecked.png" id="5_kxc3h"]
+[ext_resource type="Texture2D" uid="uid://b6qinyiq7rmw4" path="res://Assets/EraserUnchecked.png" id="6_afilk"]
+[ext_resource type="Texture2D" uid="uid://nutnawudl2ew" path="res://Assets/SelectionChecked.png" id="7_nwdoe"]
+[ext_resource type="Texture2D" uid="uid://0siv2117xti1" path="res://Assets/SelectionUnchecked.png" id="8_rvamg"]
+[ext_resource type="Texture2D" uid="uid://cerate5dt6pmx" path="res://Assets/ShapeChecked.png" id="9_xibdd"]
+[ext_resource type="Texture2D" uid="uid://wc57wgpt6ecd" path="res://Assets/ShapeUnchecked.png" id="10_eswl2"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+[node name="Control" type="HBoxContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 377.0
-offset_top = 569.0
-offset_right = -310.0
-offset_bottom = -4.0
+offset_left = -142.0
+offset_top = -68.0
+offset_right = 142.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+alignment = 1
 script = ExtResource("1_p2p86")
 
-[node name="Control" type="HBoxContainer" parent="."]
+[node name="paintBrush" type="CheckBox" parent="."]
 layout_mode = 2
-offset_right = 56.0
-offset_bottom = 75.0
+theme_override_icons/radio_checked = ExtResource("2_mpq5w")
+theme_override_icons/radio_unchecked = ExtResource("3_ygjbv")
+button_group = ExtResource("2_jons3")
 
-[node name="Line2D" type="Line2D" parent="Control"]
-points = PackedVector2Array(69, -113, 423, -206)
-default_color = Color(0, 0, 0, 1)
+[node name="eraser" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_icons/radio_checked = ExtResource("5_kxc3h")
+theme_override_icons/radio_unchecked = ExtResource("6_afilk")
+button_group = ExtResource("2_jons3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-offset_right = 24.0
-offset_bottom = 23.0
-color = Color(0, 0, 0, 1)
+[node name="selectionTool" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_icons/radio_checked = ExtResource("7_nwdoe")
+theme_override_icons/radio_unchecked = ExtResource("8_rvamg")
+button_group = ExtResource("2_jons3")
+
+[node name="shapeTool" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_icons/radio_checked = ExtResource("9_xibdd")
+theme_override_icons/radio_unchecked = ExtResource("10_eswl2")
+button_group = ExtResource("2_jons3")
+
+[connection signal="pressed" from="paintBrush" to="." method="_on_pressed" binds= ["brush"]]
+[connection signal="pressed" from="eraser" to="." method="_on_pressed" binds= ["eraser"]]
+[connection signal="pressed" from="selectionTool" to="." method="_on_pressed" binds= ["selection"]]
+[connection signal="pressed" from="shapeTool" to="." method="_on_pressed" binds= ["shape"]]

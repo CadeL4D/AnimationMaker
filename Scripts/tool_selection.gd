@@ -1,8 +1,7 @@
-extends Control
+extends HBoxContainer
 
 signal pressedButton
 
 
-func _process(delta: float) -> void:
-	$ColorRect.position = get_global_mouse_position()
-	
+func _on_pressed(extra_arg_0: String) -> void:
+	pressedButton.emit(extra_arg_0)
