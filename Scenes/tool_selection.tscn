@@ -29,6 +29,7 @@ script = ExtResource("1_p2p86")
 layout_mode = 2
 theme_override_icons/radio_checked = ExtResource("2_mpq5w")
 theme_override_icons/radio_unchecked = ExtResource("3_ygjbv")
+button_pressed = true
 button_group = ExtResource("2_jons3")
 
 [node name="eraser" type="CheckBox" parent="."]

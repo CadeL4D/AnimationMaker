@@ -12,6 +12,7 @@ func _ready() -> void:
 func add_button_clicked():
 	var count = num_files_in("user://")
 	print(count)
+	count = ("0"+str(count)) if len(str(count)) == 1 else count
 	get_viewport().get_texture().get_image().save_png("user://image"+str(count)+".png")
 	
 func play_button_clicked():
@@ -52,6 +53,7 @@ func get_images(path):
 	var images = []
 	var dir = DirAccess.open(path)
 	if dir:
+		print(dir.get_files())
 		for i in dir.get_files():
 			var image = Image.load_from_file(path+str(i))
 			images.append(image)

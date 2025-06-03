@@ -8,19 +8,11 @@ var newLine = Line2D.new()
 var line
 
 func _ready() -> void:
-	lineList[UUID] = [Line2D.new()]
-	lineList[UUID][0].default_color = Color("black")
-	lineList[UUID][0].antialiased = true
-	lineList[UUID][0].begin_cap_mode = 2
-	lineList[UUID][0].joint_mode = 2
-	lineList[UUID][0].width = 10
-	lineList[UUID][0].end_cap_mode = 2
-	lineList[UUID][0].round_precision = 10
-	self.add_child(lineList[UUID][0])
+	addingNewLine()
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("click"):
-		addingNewLine()
+		addingNewLine(1)
 
 func _input(event: InputEvent) -> void:
 	if not Input.is_action_pressed("click"):
@@ -30,13 +22,11 @@ func _input(event: InputEvent) -> void:
 
 func _draw() -> void:
 	if(event_pos != null) and Input.is_action_pressed("click"):
-		print(lineList[UUID])
 		lineList[UUID][0].add_point(event_pos)
-		#print(line)
-		#line.add_point(event_pos)
+
 		
-func addingNewLine():
-		UUID += 1
+func addingNewLine(flip = 0):
+		UUID += flip
 		lineList[UUID] = [Line2D.new()]
 		lineList[UUID][0].default_color = Color("black")
 		lineList[UUID][0].antialiased = true
@@ -46,6 +36,7 @@ func addingNewLine():
 		lineList[UUID][0].end_cap_mode = 2
 		lineList[UUID][0].round_precision = 10
 		self.add_child(lineList[UUID][0])
+
 	
 
 	
