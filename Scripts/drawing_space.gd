@@ -32,7 +32,7 @@ func _draw() -> void:
 func addingNewLine(flip = 0):
 		UUID += flip
 		lineList[UUID] = [Line2D.new()]
-		lineList[UUID][0].default_color = Color("black")
+		lineList[UUID][0].default_color = $tool_selection/HBoxContainer/ColorPickerButton.color
 		lineList[UUID][0].antialiased = true
 		lineList[UUID][0].begin_cap_mode = 2
 		lineList[UUID][0].joint_mode = 2
@@ -45,6 +45,6 @@ func undo():
 	lineList[lineList.keys()[-2]][0].clear_points()
 	lineList.erase(lineList.keys()[-2])
 
-	
 
-	
+func _on_tool_selection_pressed_button(extra_arg_0) -> void:
+	print(extra_arg_0)

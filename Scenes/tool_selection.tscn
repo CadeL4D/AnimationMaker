@@ -11,46 +11,63 @@
 [ext_resource type="Texture2D" uid="uid://cerate5dt6pmx" path="res://Assets/ShapeChecked.png" id="9_xibdd"]
 [ext_resource type="Texture2D" uid="uid://wc57wgpt6ecd" path="res://Assets/ShapeUnchecked.png" id="10_eswl2"]
 
-[node name="Control" type="HBoxContainer"]
+[node name="tool_selection" type="Control"]
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -142.0
+offset_left = -178.0
 offset_top = -68.0
-offset_right = 142.0
+offset_right = 178.0
 grow_horizontal = 2
 grow_vertical = 0
-alignment = 1
 script = ExtResource("1_p2p86")
 
-[node name="paintBrush" type="CheckBox" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -68.0
+offset_right = 178.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="paintBrush" type="CheckBox" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_icons/radio_checked = ExtResource("2_mpq5w")
 theme_override_icons/radio_unchecked = ExtResource("3_ygjbv")
 button_pressed = true
 button_group = ExtResource("2_jons3")
 
-[node name="eraser" type="CheckBox" parent="."]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+
+[node name="eraser" type="CheckBox" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_icons/radio_checked = ExtResource("5_kxc3h")
 theme_override_icons/radio_unchecked = ExtResource("6_afilk")
 button_group = ExtResource("2_jons3")
 
-[node name="selectionTool" type="CheckBox" parent="."]
+[node name="selectionTool" type="CheckBox" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_icons/radio_checked = ExtResource("7_nwdoe")
 theme_override_icons/radio_unchecked = ExtResource("8_rvamg")
 button_group = ExtResource("2_jons3")
 
-[node name="shapeTool" type="CheckBox" parent="."]
+[node name="shapeTool" type="CheckBox" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_icons/radio_checked = ExtResource("9_xibdd")
 theme_override_icons/radio_unchecked = ExtResource("10_eswl2")
 button_group = ExtResource("2_jons3")
 
-[connection signal="pressed" from="paintBrush" to="." method="_on_pressed" binds= ["brush"]]
-[connection signal="pressed" from="eraser" to="." method="_on_pressed" binds= ["eraser"]]
-[connection signal="pressed" from="selectionTool" to="." method="_on_pressed" binds= ["selection"]]
-[connection signal="pressed" from="shapeTool" to="." method="_on_pressed" binds= ["shape"]]
+[connection signal="pressed" from="HBoxContainer/paintBrush" to="." method="_on_pressed" binds= ["paint"]]
+[connection signal="pressed" from="HBoxContainer/eraser" to="." method="_on_pressed" binds= ["eraser"]]
+[connection signal="pressed" from="HBoxContainer/selectionTool" to="." method="_on_pressed" binds= ["selection"]]
+[connection signal="pressed" from="HBoxContainer/shapeTool" to="." method="_on_pressed" binds= ["shape"]]

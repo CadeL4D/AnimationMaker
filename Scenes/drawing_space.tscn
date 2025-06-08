@@ -13,6 +13,10 @@ script = ExtResource("1_7ipe5")
 
 [node name="Export Buttons" parent="." instance=ExtResource("2_2yglc")]
 layout_mode = 1
+offset_right = -1102.0
+offset_bottom = -543.0
 
-[node name="Control" parent="." instance=ExtResource("3_w032l")]
+[node name="tool_selection" parent="." instance=ExtResource("3_w032l")]
 layout_mode = 1
+
+[connection signal="pressedButton" from="tool_selection" to="." method="_on_tool_selection_pressed_button"]
