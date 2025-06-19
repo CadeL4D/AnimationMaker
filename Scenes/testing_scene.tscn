@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://lvo3qblf5ibw"]
+[gd_scene load_steps=2 format=3 uid="uid://lvo3qblf5ibw"]
+
+[ext_resource type="Script" uid="uid://bnof8u8aw3qok" path="res://Scripts/testing_scene.gd" id="1_oq1i5"]
 
 [node name="testing scene" type="Control"]
 layout_mode = 3
@@ -7,3 +9,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_oq1i5")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+visible = true
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

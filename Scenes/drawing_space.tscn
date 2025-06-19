@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://de4hhdvueek6h"]
 
 [ext_resource type="Script" uid="uid://ckb8be0utagan" path="res://Scripts/drawing_space.gd" id="1_7ipe5"]
-[ext_resource type="PackedScene" path="res://Scenes/export_buttons.tscn" id="2_2yglc"]
+[ext_resource type="PackedScene" uid="uid://cyj2m6g2f4wni" path="res://Scenes/export_buttons.tscn" id="2_2yglc"]
 [ext_resource type="PackedScene" uid="uid://c04m85uipksw7" path="res://Scenes/tool_selection.tscn" id="3_w032l"]
 
 [node name="Drawing Space" type="Control"]
