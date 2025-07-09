@@ -8,7 +8,7 @@ var UUID = 0
 var newLine = Line2D.new()
 var line
 var selected_tool = "paint"
-var tool_radius = 5
+var tool_radius = 10
 
 func _ready() -> void:
 	addingNewLine()
@@ -28,17 +28,13 @@ func _input(event: InputEvent) -> void:
 	queue_redraw()
 
 func _draw() -> void:
+	if(selected_tool == "eraser"):
+		draw_circle(event_pos,tool_radius,Color.BLACK,false,tool_radius/5)
 	if(event_pos != null) and Input.is_action_pressed("click") and selected_tool == "paint":
 		lineList[UUID][0].add_point(event_pos)
 		lineList[UUID][1].append(event_pos)
 	elif(event_pos != null) and Input.is_action_pressed("click") and selected_tool == "eraser":
-		#iterate through all lineNums created and test to see if coordinates are within a radius.
-		for lineNum in range(UUID):
-			var index = 0 #keep track of index as required by remove_point method
-			for point in (lineList[lineNum][0].points):
-				if(event_pos.distance_to(point) < tool_radius):
-					lineList[lineNum][0].remove_point(index)
-				index += 1
+		erase_points()
 
 func addingNewLine(flip = 0):
 	#test if tool is paint before adding new Line2D otherwise it creates one with other tools
@@ -69,6 +65,15 @@ func redo():
 	if redoList.size() < 20:
 		redoList.remove_at(0)
 	
+func erase_points():
+	#iterate through all lineNums created and test to see if coordinates are within a radius.
+		for lineNum in range(UUID):
+			var index = 0 #keep track of index as required by remove_point method
+			for point in (lineList[lineNum][0].points):
+				if(event_pos.distance_to(point) < tool_radius):
+					lineList[lineNum][0].remove_point(index)
+				index += 1
+	
 func _on_tool_selection_pressed_button(extra_arg_0) -> void:
 	if(extra_arg_0 == "paint"):
 		if(selected_tool == "paint"):
@@ -80,3 +85,13 @@ func _on_tool_selection_pressed_button(extra_arg_0) -> void:
 			print("eraser tool already selected")
 		else:
 			selected_tool = "eraser"
+	elif(extra_arg_0 == "selection"):
+		if(selected_tool == "selection"):
+			print("selection tool already selected")
+		else:
+			selected_tool = "selection"
+	elif(extra_arg_0 == "shape"):
+		if(selected_tool == "shape"):
+			print("shape tool already selected")
+		else:
+			selected_tool = "shape"	
