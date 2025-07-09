@@ -22,12 +22,16 @@ func _input(event: InputEvent) -> void:
 		undo()
 	if Input.is_action_just_pressed("redo"):
 		redo()
+	if event is InputEventMouseMotion and selected_tool == "eraser":
+		event_pos = event.position
+		queue_redraw()
 	if not Input.is_action_pressed("click"):
 		return
 	event_pos = event.position
 	queue_redraw()
 
 func _draw() -> void:
+	#draw circle for eraser indicator
 	if(selected_tool == "eraser"):
 		draw_circle(event_pos,tool_radius,Color.BLACK,false,tool_radius/5)
 	if(event_pos != null) and Input.is_action_pressed("click") and selected_tool == "paint":
