@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("undo"):
-		undo()
+		$ColorRect.hide()
+		#undo()
 	if Input.is_action_just_pressed("redo"):
 		redo()
 	if event is InputEventMouseMotion and selected_tool == "eraser":
@@ -50,10 +51,10 @@ func addingNewLine(flip = 0):
 		lineList[UUID][0].antialiased = true
 		lineList[UUID][0].begin_cap_mode = 2
 		lineList[UUID][0].joint_mode = 2
-		lineList[UUID][0].width = tool_radius
+		lineList[UUID][0].width = 10
 		lineList[UUID][0].end_cap_mode = 2
 		lineList[UUID][0].round_precision = 10
-		self.add_child(lineList[UUID][0])
+		$ColorRect.add_child(lineList[UUID][0])
 		print(UUID)
 		
 func undo():

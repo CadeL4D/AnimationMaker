@@ -12,6 +12,11 @@ offset_bottom = 651.0
 script = ExtResource("1_7ipe5")
 tool_radius = 10
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Export Buttons" parent="." instance=ExtResource("2_2yglc")]
 layout_mode = 1
 offset_right = -1102.0
