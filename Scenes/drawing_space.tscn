@@ -19,11 +19,13 @@ offset_right = 1151.0
 offset_bottom = 651.0
 
 [node name="Export Buttons" parent="." instance=ExtResource("2_2yglc")]
+process_priority = 1
 layout_mode = 1
 offset_right = -1102.0
 offset_bottom = -543.0
 
 [node name="tool_selection" parent="." instance=ExtResource("3_w032l")]
+process_priority = 1
 layout_mode = 1
 
 [connection signal="pressedButton" from="tool_selection" to="." method="_on_tool_selection_pressed_button"]
