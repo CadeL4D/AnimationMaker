@@ -8,7 +8,7 @@ var UUID = 0
 var newLine = Line2D.new()
 var line
 var selected_tool = "paint"
-var tool_radius = 10
+@export var tool_radius = 100
 
 func _ready() -> void:
 	addingNewLine()
@@ -49,7 +49,7 @@ func addingNewLine(flip = 0):
 		lineList[UUID][0].antialiased = true
 		lineList[UUID][0].begin_cap_mode = 2
 		lineList[UUID][0].joint_mode = 2
-		lineList[UUID][0].width = 10
+		lineList[UUID][0].width = tool_radius
 		lineList[UUID][0].end_cap_mode = 2
 		lineList[UUID][0].round_precision = 10
 		self.add_child(lineList[UUID][0])
