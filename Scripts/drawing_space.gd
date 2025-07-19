@@ -35,6 +35,7 @@ func _draw() -> void:
 	if(selected_tool == "eraser"):
 		draw_circle(event_pos,tool_radius,Color.BLACK,false,tool_radius/5)
 	if(event_pos != null) and Input.is_action_pressed("click") and selected_tool == "paint":
+		lineList[UUID][0].width = tool_radius
 		lineList[UUID][0].add_point(event_pos)
 		lineList[UUID][1].append(event_pos)
 	elif(event_pos != null) and Input.is_action_pressed("click") and selected_tool == "eraser":
