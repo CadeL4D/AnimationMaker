@@ -11,17 +11,25 @@ offset_right = 1154.0
 offset_bottom = 651.0
 script = ExtResource("1_7ipe5")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_right = 1149.0
+offset_bottom = 582.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
 process_priority = -1
 layout_mode = 0
 offset_right = 1151.0
-offset_bottom = 651.0
+offset_bottom = 582.0
 
 [node name="Export Buttons" parent="." instance=ExtResource("2_2yglc")]
 process_priority = 1
 layout_mode = 1
-offset_right = -1102.0
-offset_bottom = -543.0
+offset_left = 20.0
+offset_top = 589.0
+offset_right = -995.0
+offset_bottom = 46.0
 
 [node name="tool_selection" parent="." instance=ExtResource("3_w032l")]
 process_priority = 1

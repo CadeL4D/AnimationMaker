@@ -1,8 +1,8 @@
 extends Control
 
-@onready var AddButton = $VBoxContainer/Add
-@onready var PlayButton = $VBoxContainer/Watch
-@onready var SaveButton = $VBoxContainer/Save
+@onready var AddButton = $HBoxContainer/Add
+@onready var PlayButton = $HBoxContainer/Watch
+@onready var SaveButton = $HBoxContainer/Save
 @onready var FileSave = $dirSave
 
 func _ready() -> void:

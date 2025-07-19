@@ -12,6 +12,8 @@ var tool_radius = 100
 var background_color = Color.WHITE
 
 func _ready() -> void:
+	$Control.size.x = get_viewport().size.x
+	$Control.size.y = get_viewport().size.y-80
 	addingNewLine()
 	
 func _process(delta: float) -> void:
@@ -40,7 +42,6 @@ func _draw() -> void:
 		lineList[UUID][0].add_point(event_pos)
 		lineList[UUID][1].append(event_pos)
 	elif(event_pos != null) and Input.is_action_pressed("click") and selected_tool == "eraser":
-		
 		lineList[UUID][0].width = tool_radius
 		lineList[UUID][0].add_point(event_pos)
 		lineList[UUID][1].append(event_pos)
@@ -59,7 +60,7 @@ func addingNewLine(flip = 0):
 	lineList[UUID][0].width = 10
 	lineList[UUID][0].end_cap_mode = 2
 	lineList[UUID][0].round_precision = 10
-	$ColorRect.add_child(lineList[UUID][0])
+	$Control/ColorRect.add_child(lineList[UUID][0])
 	print(UUID)
 		
 func undo():
