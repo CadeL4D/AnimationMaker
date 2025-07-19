@@ -11,10 +11,14 @@ func _ready() -> void:
 	SaveButton.pressed.connect(save_button_clicked)
 
 func add_button_clicked():
+	
 	var count = num_files_in("user://")
 	print(count)
 	count = ("0"+str(count)) if len(str(count)) == 1 else count
 	get_viewport().get_texture().get_image().save_png("user://image"+str(count)+".png")
+	var rect = ColorRect.new()
+	rect.color = Color.BLACK
+	get_parent().add_child(rect)
 	
 func play_button_clicked():
 	get_images("user://")

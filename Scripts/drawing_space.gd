@@ -19,8 +19,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("undo"):
-		$ColorRect.hide()
-		#undo()
+		undo()
 	if Input.is_action_just_pressed("redo"):
 		redo()
 	if event is InputEventMouseMotion and selected_tool == "eraser":
