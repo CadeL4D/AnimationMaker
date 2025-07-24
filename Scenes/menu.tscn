@@ -1,7 +1,62 @@
-[gd_scene format=3 uid="uid://c4t27hsfqy617"]
+[gd_scene load_steps=2 format=3 uid="uid://c4t27hsfqy617"]
+
+[ext_resource type="Script" uid="uid://3ux0w7acyt7f" path="res://Scripts/menu.gd" id="1_1rerr"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 646.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rerr")
+
+[node name="Draw" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.259
+anchor_top = 0.431
+anchor_right = 0.741
+anchor_bottom = 0.569
+offset_left = 0.131989
+offset_top = 0.211975
+offset_right = -0.13208
+offset_bottom = -0.212006
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Draw"
+
+[node name="Contribute" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.285
+anchor_top = 0.591
+anchor_right = 0.716
+anchor_bottom = 0.745
+offset_left = -0.320038
+offset_top = 0.0319824
+offset_right = 0.167969
+offset_bottom = 0.23996
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Contribute"
+
+[node name="Feedback" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.775
+anchor_right = 0.688
+anchor_bottom = 0.941
+offset_left = 0.0759888
+offset_top = -0.200012
+offset_right = -0.0760498
+offset_bottom = 0.231995
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Feedback"
+
+[connection signal="pressed" from="Draw" to="." method="_on_draw_pressed"]

@@ -13,15 +13,21 @@ script = ExtResource("1_7ipe5")
 
 [node name="Control" type="Control" parent="."]
 clip_contents = true
-anchors_preset = 0
-offset_right = 1149.0
-offset_bottom = 582.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 process_priority = -1
-layout_mode = 0
-offset_right = 1151.0
-offset_bottom = 582.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Export Buttons" parent="." instance=ExtResource("2_2yglc")]
 process_priority = 1
@@ -35,4 +41,15 @@ offset_bottom = 46.0
 process_priority = 1
 layout_mode = 1
 
-[connection signal="pressedButton" from="tool_selection" to="." method="_on_tool_selection_pressed_button"]
+[node name="hide menus" type="CheckButton" parent="."]
+modulate = Color(0.321728, 0.321728, 0.321728, 1)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 64.0
+offset_bottom = 55.0
+tooltip_text = "Hide Menus"
+
+[connection signal="widthBrush" from="tool_selection" to="." method="_on_tool_selection_width_brush"]
+[connection signal="widthBrush" from="tool_selection" to="." method="change_width_of_brush"]
+[connection signal="toggled" from="hide menus" to="." method="_on_check_button_toggled"]

@@ -17,10 +17,10 @@ func add_button_clicked():
 	count = ("0"+str(count)) if len(str(count)) == 1 else count
 	get_viewport().get_texture().get_image().save_png("user://image"+str(count)+".png")
 	var rect = ColorRect.new()
-	rect.color = Color.BLACK
-	rect.size.x = 1151
-	rect.size.y = 651
-	get_parent().add_child(rect)
+	rect.color = Color.WHITE
+	rect.size.x = get_viewport().size.x
+	rect.size.y = get_viewport().size.y
+	get_parent().get_child(0).add_child(rect)
 	
 func play_button_clicked():
 	get_images("user://")

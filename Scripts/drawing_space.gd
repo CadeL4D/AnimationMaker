@@ -8,12 +8,12 @@ var UUID = 0
 var newLine = Line2D.new()
 var line
 var selected_tool = "paint"
-var tool_radius = 100
+var tool_radius = 10
 var background_color = Color.WHITE
 
 func _ready() -> void:
 	$Control.size.x = get_viewport().size.x
-	$Control.size.y = get_viewport().size.y-80
+	$Control.size.y = get_viewport().size.y
 	addingNewLine()
 	
 func _process(delta: float) -> void:
@@ -60,7 +60,7 @@ func addingNewLine(flip = 0):
 	lineList[UUID][0].width = 10
 	lineList[UUID][0].end_cap_mode = 2
 	lineList[UUID][0].round_precision = 10
-	$Control/ColorRect.add_child(lineList[UUID][0])
+	$Control.get_child($Control.get_child_count()-1).add_child(lineList[UUID][0])
 	print(UUID)
 		
 func undo():
@@ -108,3 +108,16 @@ func _on_tool_selection_pressed_button(extra_arg_0) -> void:
 			print("shape tool already selected")
 		else:
 			selected_tool = "shape"	
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	if toggled_on == true:
+		$"Export Buttons".hide()
+		$tool_selection.hide()
+	else:
+		$"Export Buttons".show()
+		$tool_selection.show()
+		
+
+func change_width_of_brush(widthBrush) -> void:
+	tool_radius = widthBrush
